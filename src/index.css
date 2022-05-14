@@ -7,17 +7,25 @@ ol, ul {
   padding-left: 30px;
 }
 
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
+/* .board-row:after {
+  clear: both;    
+  content: "";  
+  display: table;  
+} */
+
+.board-row {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
+
 
 .status {
   margin-bottom: 10px;
 }
 
-.square {
+/* .square {
   background: #fff;
   border: 1px solid #999;
   float: left;
@@ -30,6 +38,18 @@ ol, ul {
   padding: 0;
   text-align: center;
   width: 34px;
+} */
+
+.square {
+  background-color: #fff;
+  border: 1px solid gray;
+  font-size: 24px;
+  font-weight: bold;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .square:focus {
@@ -43,6 +63,7 @@ ol, ul {
 .game {
   display: flex;
   flex-direction: row;
+  justify-content: center;  
 }
 
 .game-info {
