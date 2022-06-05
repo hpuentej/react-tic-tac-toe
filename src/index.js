@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
@@ -6,7 +6,7 @@ import './index.css';
 const Square = (props) => { 
   return (
     <button
-      className="square" 
+      className="square"
       onClick={props.onClick} 
     >
       {props.value}
@@ -43,8 +43,8 @@ const calculateWinner = (squares) => {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i]; // Destructuring
+  for (let line of lines) {       
+    const [a, b, c] = line; //  
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];  
     }
@@ -55,7 +55,7 @@ const calculateWinner = (squares) => {
 // ========================================================
 
 // Componente Board
-class Board extends React.Component {
+class Board extends Component {
   renderSquare(i) { 
     return (
       <Square 
@@ -87,11 +87,11 @@ class Board extends React.Component {
 // ========================================================
 
 // Componente Game
-class Game extends React.Component {
+class Game extends Component {
   constructor(props){
     super(props);
-    this.state = { 
-      history: [{ // 
+    this.state = { // 
+      history: [{ //  
       squares: Array(9).fill(null),
       }],
       stepNumber: 0,
@@ -184,4 +184,3 @@ function App() {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
-
