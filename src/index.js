@@ -43,8 +43,8 @@ const calculateWinner = (squares) => {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  for (let line of lines) {       
-    const [a, b, c] = line; //  
+  for (let line of lines) {
+    const [a, b, c] = line; //
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];  
     }
@@ -65,19 +65,15 @@ class Board extends Component {
     );
   }
 
-  render() {    
-    return (      
-      <div>         
+  render() {
+    const elements = [];
+    for (let i = 0; i < 9; i++) {
+      elements.push(this.renderSquare(i));
+    }    
+    return (
+      <div>
         <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}       
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
+          {elements}
         </div>
       </div>
     );
