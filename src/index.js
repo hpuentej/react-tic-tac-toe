@@ -6,8 +6,8 @@ import './index.css';
 function Square(props) { 
   return (
     <button
-      className="square"
-      onClick={props.onClick}
+      className="square" 
+      onClick={props.onClick} 
     >
       {props.value}
     </button>
@@ -45,13 +45,13 @@ function calculateWinner(squares) {
       return squares[a];  
     }
   }
-  return null; 
+  return null;
 }
 
 // Componente Board
 class Board extends React.Component {
   renderSquare(i) { 
-    return ( 
+    return (
       <Square 
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
@@ -84,7 +84,7 @@ class Game extends React.Component {
     super(props);
     this.state = { 
       history: [{ // 
-        squares: Array(9).fill(null),
+      squares: Array(9).fill(null),
       }],
       stepNumber: 0,
       xIsNext: true,
@@ -94,15 +94,15 @@ class Game extends React.Component {
   handleClick(i){
     const history = this.state.history.slice(0, this.state.stepNumber + 1); 
     // const current = history[history.length -1];
-    const current = history[this.state.stepNumber];
-    const squares = current.squares.slice();    
-    if (calculateWinner(squares) || squares[i]){ 
+    const current = history[this.state.stepNumber]; // current is the ultimo objeto del array
+    const squares = current.squares.slice();
+    if (calculateWinner(squares) || squares[i]){
       return;
     }
     squares[i] = (this.state.xIsNext && 'X') || 'O';
     this.setState({
       history: history.concat([{
-        squares: squares,
+      squares: squares,
       }]),
       // history: [...history, {squares: squares}],
       stepNumber: history.length,
@@ -125,13 +125,16 @@ class Game extends React.Component {
     const moves = history.map((_, move) => { // move is the index
       const desc = move ?
         'Go to move #' + move :
+        // `Go to move # ${move} (${},${})` :        
         'Go to game start';
       return (
-        <li key={move}> 
-          <button onClick={() => this.jumpTo(move)}>{desc}</button> 
+        <li key={move}>
+          {/* <button onClick={() => this.jumpTo(move)}>{desc}</button> */}
+          <button onClick={this.jumpTo.bind(this,move)}>{desc}</button>
+
         </li>
       );
-    });  
+    });
 
     let status;
     if (winner) {
@@ -147,7 +150,8 @@ class Game extends React.Component {
         <div className="game-board">
           <Board
             squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
+            // onClick={(i) => this.handleClick(i)}
+            onClick={this.handleClick.bind(this)}
           />
         </div>
         <div className="game-info">
@@ -161,7 +165,14 @@ class Game extends React.Component {
 
 // ========================================
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Game />);
+function App() {
+  return ( 
+    <div>
+      <Game />   
+    </div>
+  )
+}
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
 

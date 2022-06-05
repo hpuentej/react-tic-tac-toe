@@ -3,7 +3,7 @@ body {
   margin: 20px;
 }
 
-ol, ul {
+ol {
   padding-left: 30px;
 }
 
@@ -21,9 +21,9 @@ ol, ul {
 }
 
 
-.status {
+/* .status {
   margin-bottom: 10px;
-}
+} */
 
 /* .square {
   background: #fff;
