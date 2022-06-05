@@ -66,14 +66,14 @@ class Board extends Component {
   }
 
   render() {
-    const elements = [];
+    const cuadraditos = [];
     for (let i = 0; i < 9; i++) {
-      elements.push(this.renderSquare(i));
+      cuadraditos.push(this.renderSquare(i));
     }    
     return (
       <div>
         <div className="board-row">
-          {elements}
+          {cuadraditos}
         </div>
       </div>
     );
