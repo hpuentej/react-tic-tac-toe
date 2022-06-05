@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 // Componente Square
-function Square(props) { 
+const Square = (props) => { 
   return (
     <button
       className="square" 
@@ -12,7 +12,9 @@ function Square(props) {
       {props.value}
     </button>
   );
-} 
+}
+
+// ========================================================
 
 // class Square extends React.Component {  
 //   render() {
@@ -27,8 +29,10 @@ function Square(props) {
 //   }
 // }
 
+// ========================================================
+
 // Funcion para calcular el ganador
-function calculateWinner(squares) {
+const calculateWinner = (squares) => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -47,6 +51,8 @@ function calculateWinner(squares) {
   }
   return null;
 }
+
+// ========================================================
 
 // Componente Board
 class Board extends React.Component {
@@ -77,6 +83,8 @@ class Board extends React.Component {
     );
   }
 }
+
+// ========================================================
 
 // Componente Game
 class Game extends React.Component {
@@ -131,14 +139,13 @@ class Game extends React.Component {
         <li key={move}>
           {/* <button onClick={() => this.jumpTo(move)}>{desc}</button> */}
           <button onClick={this.jumpTo.bind(this,move)}>{desc}</button>
-
         </li>
       );
     });
 
     let status;
     if (winner) {
-      status = `Winner: Gamer ${winner}`; 
+      status = `Winner: Gamer ${winner}`;
     } else if (current.squares[0] && current.squares[1] && current.squares[2] && current.squares[3] && current.squares[4] && current.squares[5] && current.squares[6] && current.squares[7] && current.squares[8]) {
       status = 'Empate: Nadie gana';
     } else {
@@ -146,7 +153,7 @@ class Game extends React.Component {
     }
 
     return (
-      <div className="game"> 
+      <div className="game">
         <div className="game-board">
           <Board
             squares={current.squares}
@@ -163,15 +170,17 @@ class Game extends React.Component {
   }
 }
 
-// ========================================
+// ========================================================
 
 function App() {
-  return ( 
+  return (
     <div>
-      <Game />   
+      <Game />
     </div>
   )
 }
+
+// ========================================================
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
