@@ -56,7 +56,7 @@ const calculateWinner = (squares) => {
 
 // Componente Board
 class Board extends Component {
-  renderSquare(i) { 
+  renderSquare(i) {
     return (
       <Square 
         value={this.props.squares[i]}
@@ -95,7 +95,7 @@ class Game extends Component {
       squares: Array(9).fill(null),
       }],
       stepNumber: 0,
-      xIsNext: true,
+      isXNext: true,
     };
   }
   
@@ -107,21 +107,21 @@ class Game extends Component {
     if (calculateWinner(squares) || squares[i]){
       return;
     }
-    squares[i] = (this.state.xIsNext && 'X') || 'O';
+    squares[i] = (this.state.isXNext && 'X') || 'O';
     this.setState({
       history: history.concat([{
       squares: squares,
       }]),
       // history: [...history, {squares: squares}],
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
+      isXNext: !this.state.isXNext,
     });
   }
 
   jumpTo(step){
     this.setState({
       stepNumber: step,
-      xIsNext: (step % 2) === 0,
+      isXNext: (step % 2) === 0,
     });
   }
 
@@ -149,7 +149,7 @@ class Game extends Component {
     } else if (current.squares[0] && current.squares[1] && current.squares[2] && current.squares[3] && current.squares[4] && current.squares[5] && current.squares[6] && current.squares[7] && current.squares[8]) {
       status = 'Empate: Nadie gana';
     } else {
-      status = `Next player: Gamer ${this.state.xIsNext ? 'X': 'O'}`;
+      status = `Next player: Gamer ${this.state.isXNext ? 'X': 'O'}`;
     }
 
     return (
