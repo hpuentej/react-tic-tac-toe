@@ -42,7 +42,7 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i]; // Destructuring
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];  
+      return squares[a];
     }
   }
   return null;
@@ -50,9 +50,9 @@ function calculateWinner(squares) {
 
 // Componente Board
 class Board extends React.Component {
-  renderSquare(i) { 
+  renderSquare(i) {
     return (
-      <Square 
+      <Square
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
       />
@@ -71,7 +71,7 @@ class Board extends React.Component {
           {this.renderSquare(5)}
           {this.renderSquare(6)}
           {this.renderSquare(7)}
-          {this.renderSquare(8)}
+          {this.renderSquare(8)}          
         </div>
       </div>
     );
@@ -91,7 +91,7 @@ class Game extends React.Component {
     };
   }
   
-  handleClick(i){
+  handleClick(i){ // i es el indice de la casilla que se ha pulsado (0,1,2,3,4,5,6,7,8)
     const history = this.state.history.slice(0, this.state.stepNumber + 1); 
     // const current = history[history.length -1];
     const current = history[this.state.stepNumber]; // current is the ultimo objeto del array
@@ -103,6 +103,8 @@ class Game extends React.Component {
     this.setState({
       history: history.concat([{
       squares: squares,
+      // Store the index of the latest moved square
+      latestMovedSquare: i,
       }]),
       // history: [...history, {squares: squares}],
       stepNumber: history.length,
