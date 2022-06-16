@@ -102,9 +102,9 @@ class Game extends React.Component {
     squares[i] = (this.state.xIsNext && 'X') || 'O';
     this.setState({
       history: history.concat([{
-      squares: squares,
-      // Store the index of the latest moved square
-      latestMovedSquare: i,
+        squares: squares,
+        // Store the index of the latest moved square
+        latestMovedSquare: i,
       }]),
       // history: [...history, {squares: squares}],
       stepNumber: history.length,
@@ -123,17 +123,19 @@ class Game extends React.Component {
     const history = this.state.history; // Array de objetos
     const current = history[this.state.stepNumber]; // current es el ultimo objeto del array
     const winner = calculateWinner(current.squares);
-    
-    const moves = history.map((_, move) => { // move is the index
-      const desc = move ?
-        'Go to move #' + move :
-        // `Go to move # ${move} (${},${})` :        
+
+    const moves = history.map((step, move) => { // move is the index
+      const posicion = step.latestMovedSquare;
+      const row = Math.floor(posicion / 3) + 1;
+      const column = posicion % 3 + 1;
+      const desc = move ? 
+        // 'Go to move #' + move :
+        `Go to move # ${move} (${row},${column})` :      
         'Go to game start';
       return (
         <li key={move}>
-          {/* <button onClick={() => this.jumpTo(move)}>{desc}</button> */}
-          <button onClick={this.jumpTo.bind(this,move)}>{desc}</button>
-
+          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          {/* <button onClick={this.jumpTo.bind(this,move)}>{desc}</button>  */}
         </li>
       );
     });
@@ -146,7 +148,7 @@ class Game extends React.Component {
     } else {
       status = `Next player: Gamer ${this.state.xIsNext ? 'X': 'O'}`;
     }
-
+ 
     return (
       <div className="game"> 
         <div className="game-board">
@@ -169,9 +171,9 @@ class Game extends React.Component {
 
 function App() {
   return ( 
-    <div>
+    <>
       <Game />   
-    </div>
+    </>
   )
 }
 
