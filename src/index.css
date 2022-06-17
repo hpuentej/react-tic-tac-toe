@@ -69,3 +69,8 @@ ol {
 .game-info {
   margin-left: 20px;
 }
+
+.negrita {
+  font-weight: bold;
+  color: rgb(34, 34, 134);
+}

@@ -6,7 +6,7 @@ import './index.css';
 function Square(props) { 
   return (
     <button
-      className="square" 
+      className="square " 
       onClick={props.onClick} 
     >
       {props.value}
@@ -124,7 +124,7 @@ class Game extends React.Component {
     const current = history[this.state.stepNumber]; // current es el ultimo objeto del array
     const winner = calculateWinner(current.squares);
 
-    const moves = history.map((step, move) => { // move is the index
+    const moves = history.map((step, move) => { // moves es un array de objetos 
       const posicion = step.latestMovedSquare;
       const row = Math.floor(posicion / 3) + 1;
       const column = posicion % 3 + 1;
@@ -132,9 +132,10 @@ class Game extends React.Component {
         // 'Go to move #' + move :
         `Go to move # ${move} (${row},${column})` :      
         'Go to game start';
+
       return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        <li key={move} >
+          <button onClick={() => this.jumpTo(move)} className={ move === this.state.stepNumber? "negrita" : ''}>{desc}</button>
           {/* <button onClick={this.jumpTo.bind(this,move)}>{desc}</button>  */}
         </li>
       );
