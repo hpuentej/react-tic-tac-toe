@@ -106,6 +106,7 @@ class Game extends React.Component {
       }],
       stepNumber: 0,
       xIsNext: true,
+      isAscending: true,
     };
   }
   
@@ -134,6 +135,12 @@ class Game extends React.Component {
     this.setState({
       stepNumber: step,
       xIsNext: (step % 2) === 0,
+    });
+  }
+
+  handleSortToggle() {
+    this.setState({
+      isAscending: !this.state.isAscending
     });
   }
 
@@ -167,20 +174,28 @@ class Game extends React.Component {
     } else {
       status = `Next player: Gamer ${this.state.xIsNext ? 'X': 'O'}`;
     }
- 
+
+    const isAscending = this.state.isAscending;
+    if (!isAscending) {
+      moves.reverse();
+    }
+
     return (
-      <div className="game"> 
+      <div className="game">
         <div className="game-board">
-          <Board            
-            squares={current.squares}            
+          <Board
+            squares={current.squares}
             // onClick={(i) => this.handleClick(i)}
             onClick={this.handleClick.bind(this)}
             posicionActual={current.latestMovedSquare}
           />
         </div>
-        <div className="game-info">
+        <div className="game-info">          
           <div>{status}</div>
           <ol>{moves}</ol>
+          <button onClick={() => this.handleSortToggle()}>
+            {isAscending ? 'Ultimo-a-Primero' : 'Primero-a-Ultimo' }
+          </button>
         </div>
       </div>
     );
