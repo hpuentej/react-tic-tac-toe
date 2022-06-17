@@ -52,6 +52,10 @@ ol {
   align-items: center;
 }
 
+.cuadrado {
+  background-color: rgb(199, 238, 253);
+}
+
 .square:focus {
   outline: none;
 }

@@ -6,13 +6,15 @@ import './index.css';
 function Square(props) { 
   return (
     <button
-      className="square " 
-      onClick={props.onClick} 
+      className={`square ${props.posicionActual === props.posicion ? 'cuadrado' : ''}`}  
+      onClick={props.onClick}       
     >
       {props.value}
     </button>
   );
-} 
+}
+
+// move === this.state.stepNumber? "negrita" : ''
 
 // class Square extends React.Component {  
 //   render() {
@@ -55,6 +57,8 @@ class Board extends React.Component {
       <Square
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
+        posicionActual={this.props.posicionActual}
+        posicion={i}
       />
     );
   }
@@ -134,7 +138,7 @@ class Game extends React.Component {
         'Go to game start';
 
       return (
-        <li key={move} >
+        <li key={move}>
           <button onClick={() => this.jumpTo(move)} className={ move === this.state.stepNumber? "negrita" : ''}>{desc}</button>
           {/* <button onClick={this.jumpTo.bind(this,move)}>{desc}</button>  */}
         </li>
@@ -153,10 +157,11 @@ class Game extends React.Component {
     return (
       <div className="game"> 
         <div className="game-board">
-          <Board
-            squares={current.squares}
+          <Board            
+            squares={current.squares}            
             // onClick={(i) => this.handleClick(i)}
             onClick={this.handleClick.bind(this)}
+            posicionActual={current.latestMovedSquare}
           />
         </div>
         <div className="game-info">
