@@ -15,7 +15,7 @@ ol {
 
 .board-row {
   display: grid;
-  gap: 1px;
+  /* gap: 1px; */
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
 }

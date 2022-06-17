@@ -63,24 +63,38 @@ class Board extends React.Component {
     );
   }
 
-  render() {    
-    return (      
+  render() {
+    const drawSquare = [];  
+    for(let i=0; i< this.props.squares.length ; i++){
+      drawSquare.push(<div key={i}>{this.renderSquare(i)}</div>);
+    }        
+    return (
       <div>         
         <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}       
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}          
+          {drawSquare}        
         </div>
       </div>
     );
   }
 }
+
+//     return (      
+//       <div>         
+//         <div className="board-row">
+//           {this.renderSquare(0)}
+//           {this.renderSquare(1)}
+//           {this.renderSquare(2)}       
+//           {this.renderSquare(3)}
+//           {this.renderSquare(4)}
+//           {this.renderSquare(5)}
+//           {this.renderSquare(6)}
+//           {this.renderSquare(7)}
+//           {this.renderSquare(8)}          
+//         </div>
+//       </div>
+//     );
+//   }
+// }
 
 // Componente Game
 class Game extends React.Component {
